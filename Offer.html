@@ -1,0 +1,115 @@
+{% elif post_type == "Offer" %}
+	<h2>{{header}}Offer</h2>
+	<p class="required"><span class="required">* </span>Required Fields</p>
+		<div class="new-offer-form">
+			<form class="form-horizontal" id=post_form method="post" action="{% url 'create_post' post_type=post_type post_id=post_id %}" style="margin: 20px;">
+				{% csrf_token %}
+					<div class="container-fluid">
+						<div class="row">
+							<div class="new-company-info col-md-6">
+								<div class="form-group">
+       								<label for="company" class="control-label col-md-12"><span class="required">* </span>Company: </label>
+        							{{ form.company.errors }}
+        							<div class="col-md-12">
+        							{{form.company}}
+        							</div>
+								</div>
+								<div class="form-group">
+        							<label for="job_title" class="control-label col-md-12">Job title: </label>
+        							{{ form.job_title.errors }}
+        							<div class="col-md-12">
+        							{{ form.job_title}}
+        							</div>
+								</div>
+								<div class="form-group">
+        							<label class="control-label col-md-12" for="applicant_degree">Degree type: </label>
+        							{{ form.applicant_degree.errors}}
+        							<div class="col-md-12">
+        							{{ form.applicant_degree }}
+       								</div>
+								</div>
+								<div class="form-group">
+        							<label for="country" class="control-label col-md-12">Country: </label>
+        							<div class="col-md-12">
+        								{{location_form.country}}
+        							</div>
+        						</div>
+								<div class="form-group">
+        							<label for="state" class="control-label col-md-12">State: </label>
+        							<div class="col-md-12">
+        								{{location_form.state}}
+        							</div>
+								</div>
+								<div class="form-group">
+        							<label for="city" class="control-label col-md-12"><span class="required">* </span>City: </label>
+        							{{location_form.city.errors}}
+        							<div class="col-md-12">
+        							{{location_form.city}}
+        							</div>
+								</div>
+							</div><!-- End of Company  Div -->
+							<div class="new-pay-info col-md-6">
+								<div class="form-group">
+        							<label for="job_type" class="control-label col-md-12">Job Type: </label>
+        							{{ form.job_type.errors}}
+        							<div class="col-md-12">
+        							{{ form.job_type }}
+        							</div>
+        						</div>
+        						<div class="form-group">
+        							<label for="interview_process" class="control-label col-md-12">Pay Type: </label>
+        							{{ form.pay_type.errors }}
+        							<div class="col-md-12">
+        							{{ form.pay_type }}
+        							</div>
+        						</div>
+        						<div class="form-group">
+        							<label for="questions_asked" class="control-label col-md-12"><span class="required">* </span>Salary: </label>
+        							{{ form.salary.errors }}
+        							<div class="col-md-12 input-group money_field">
+										<span class="input-group-addon">$</span>
+										{{ form.salary }}
+       								</div>
+								</div>
+								<div class="form-group">
+        							<label for="offer_status" class="control-label col-md-12">Signing Bonus: </label>
+        							{{ form.signing_bonus.errors }}
+        							<div class="col-md-12 input-group money_field">
+        							<span class="input-group-addon">$</span>
+        							{{ form.signing_bonus }}
+        							</div>
+								</div>
+								<div class="form-group">
+        							<label for="SOO" class="control-label col-md-12">Relocation Bonus: </label>
+        							{{ form.relocation_bonus.errors }}
+        							<div class="col-md-12 input-group money_field">
+        							<span class="input-group-addon">$</span>
+        							{{ form.relocation_bonus}}
+       								</div>
+    							</div>
+								<div class="form-group">
+        							<label for="SOO" class="control-label col-md-12">Offer Status: </label>
+       								 {{ form.offer_status.errors }}
+        							<div class="col-md-12">
+        							{{ form.offer_status}}
+        							</div>
+    							</div>
+							</div>
+						</div><!-- End of New Offer Selector Row Div -->
+					</div><!-- End of New Offer Selector Container Div -->
+					<div class="form-group">
+	 					{{ form.other_details.errors }}
+        				<label for="SOO" class="control-label col-md-12">Other Details: </label>
+        				<div class="col-md-12">
+        				{{ form.other_details}}
+        				</div>
+    				</div>
+    		<div class="form-group">
+        		<button type="submit" class="btn btn-default">Submit</button>
+    		</div>
+		</form>
+	</div><!-- End of New Offer Div -->
+{% endif %}
+</div><!-- End new form Div -->
+{% endblock %}
+<!-- Modal -->

@@ -1,0 +1,98 @@
+{% extends "portal/base.html" %}
+{% load extra_templates %}
+{% load humanize %}
+{% block addstyles %}<link rel="stylesheet" href="/static/css/gethired.css">{% endblock%}
+{% block title %} Project Marketplace {% endblock %}
+{% block header %} Project Marketplace {% endblock %}
+{% block content %}
+
+<div class="row search">
+				<div class="user-bar col-md-12">
+					<span style="float: right;">
+					{% if user.is_authenticated %}
+					<a href="/accounts/logout/">Logout</a>
+					{% endif %}
+					</span>
+				</div><!-- End of user-bar Div -->
+			</div><!-- End of Search Row -->
+
+<div class="filteroptions col-md-3">
+<div class="filterdiv panel panel-default">
+<div class="contain">
+<h5><span class='labs'>Filter Posts:</span></h5>
+<form method="GET" action="{% url 'filter_posts_project' %}">
+<span class='labs'> Technology:</span>
+	<select class="form-control combobox" name="technology">
+	<option value="ALL"></option>
+    {% for t in filters.technologies %}
+    	<option value="{{t.name}}">{{t.name}}</option>
+    {% endfor %}
+	</select>
+<div style="padding-top: 5px;text-align: center;">
+
+<input type="submit" class="updatebtn btn btn-default" value="Update" />
+<a class="resetbtn btn btn-default" href="/marketplace/" style="width: 75px;">Reset</a>
+</div> <!-- Button Div -->
+</form>
+</div>
+</div>
+</div>
+<div class="post_bar col-md-9">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="btn-group" style="padding-top: 5px;">
+				<a href="{% url 'create_post_project' %}" class="btn btn-default">New Post</a>
+			</div>
+		</div>
+	</div>
+{% if not posts %}
+	<div class="col-md-12 post-404 alert alert-danger">
+		<p>Your search has returned no results.</p>
+	</div>
+{% endif %}
+{% for post in posts %}
+{% if not post.deleted %}
+
+	<div class="posts panel">
+    	<div class="row">
+    		<p><span class="label label-danger">{{post.post_type|title}}</span></p>
+    	</div>
+    	<div class="row">
+ 			<span class="Title" ><a class="norm" data-rel="tooltip" data-placement="right" href="">{{post.title}}</a></span> 
+			<span class="Date"> {{post.date_posted|naturaltime|title}}</span>
+		</div>
+		<div class="container-fluid">
+		<div class="row">
+			<p class="post-preview-info"><span class="post-preview-info job_type"><a class="norm" data-rel="tooltip" data-placement="right" href="">{{post.client}}</a></span></p>
+			<p class="post-preview-info"><span class="location"><a class="norm" data-rel="tooltip" data-placement="right" title="Posts by Location" href="">{{post.location}}</a></span></p>
+		</div>
+		<div class="row">
+			<p><span class="post-preview">{{post.description|tagline}}</span></p>
+		</div>
+		<a class="post-panel-link" href="{% url 'get_post_project' post_id=post.pk %}"><span class="post-link"></span></a>
+    </div>
+    </div>
+{% endif %}
+{% endfor %}
+
+	{% if posts.has_other_pages %}
+	<div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="{% append_to_get page=posts.previous_page_number %}">&lsaquo;&lsaquo;</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{posts.number}} of {{posts.paginator.num_pages}}
+            </span>
+            
+            {% if posts.has_next %}
+                <a href="{% append_to_get page=posts.next_page_number %}">&rsaquo;&rsaquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

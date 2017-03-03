@@ -1,0 +1,92 @@
+{% load static %}
+{% load extra_templates %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="{% static "/static/js/URI.js" %}"></script>
+	<script src="{% static "/static/js/mainfunctions.js" %}"></script>
+	<script src="{% static "/static/js/combobox.js" %}"></script>
+	<script src ="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static "/static/css/style.css" %}">
+	<link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800" rel="stylesheet" type="text/css">
+	<link href="{% static "/static/images/unc_fav_icon.ico" %}" rel="shortcut icon" />
+	{%  block addstyles %}{% endblock %}
+<title>{% block title %}Tutor Page{% endblock %}</title>
+</head>
+<body>
+<a href="#" class="back-to-top"></a>
+<div class="container-fluid main-container">
+	<div class="row">
+		<div class="main col-md-9">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row logorow">
+						<div class="logocontainer col-md-12">
+							<div class="logo col-md-6">
+								<span class="logo"><span class="unc logo">UNC</span> CHAPEL HILL</span> 
+								<br> 
+								<span class="logotag">Computer Science Student Portal</span>
+							</div><!-- End of Logo Div -->
+						</div><!-- End of Logo Container div -->
+					</div> <!-- Logo div End -->
+					<div class="navrow row">
+					<div class="navbar col-md-12">
+							<ul class="navlist">
+								<li><a class="home" href="{% url 'index_view' %}">Home<span class="glyphicon glyphicon-home"></span></a></li>
+								<li><a class="market" href="{% url 'main_view' site='marketplace' %}">Project Market <span class="glyphicon glyphicon-folder-open"></span></a></li>
+								<li><a class="hired" href="{% url 'main_view' site='gethired' %}">Getting Hired<span class="glyphicon glyphicon-briefcase"></span></a></li>
+								<li><a class="jobs" href="{% url 'main_view' site='jobs' %}">Job Market<span class="glyphicon glyphicon-user"></span></a></li>
+								<li><a href="{% url 'csclub_view' %}">CS Club<span class="glyphicon glyphicon-hdd"</span></a></li>
+							</ul>
+						</div><!-- End of Navbar -->
+					</div><!-- End of navrow -->
+				</div> <!-- Nav Div -->
+			</div> <!-- End of Logo+Nav Row End -->
+			<div class="row">
+				<div class="info col-md-12">
+					<h1>{% block header %}{% endblock %}</h1>
+				</div> <!-- Info Div -->
+			</div><!-- Info Div Row End -->
+			<div class="row search">
+				<div class="user-bar col-md-12">
+					<span style="float: right;">
+					{% if user.is_authenticated %}
+					<a href="/accounts/logout/">
+					{% else %}
+					Welcome, Guest. Please <a href="/accounts/login/"> login!</a>
+					{% endif %}
+					</span>
+				</div><!-- End of user-bar Div -->
+			</div><!-- End of Search Row -->
+			<div class="container-fluid">
+				<div class="row">
+					{% block content %}
+					{% endblock %}
+				</div><!-- Post Bar End -->
+			</div><!-- Post Bar Row End -->
+		</div><!-- Main Div End -->
+	</div><!-- Main Row End -->
+		<div class="footer col-md-12">
+			<div class="row">
+				<ul class="footernav">
+					<li><a class="home" href="{% url 'index_view' %}">Home<span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a class="market" href="{% url 'main_view' site='marketplace' %}">Project Market <span class="glyphicon glyphicon-folder-open"></span></a></li>
+					<li><a class="hired" href="{% url 'main_view' site='gethired' %}">Get Hired<span class="glyphicon glyphicon-briefcase"></span></a></li>
+					<li><a class="jobs" href="{% url 'main_view' site='jobs' %}">Job Board<span class="glyphicon glyphicon-user"></span></a></li>
+				
+					<li><a href ="{% url 'csclub_view' %}">CS Club<span class="glyphicon glyphicon-hdd"</span></a></li>
+				</ul>
+			</div><!-- End of MiniNav -->
+		</div><!-- Footer Div End -->
+</div>
+</body>
+</html>

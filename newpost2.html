@@ -1,0 +1,128 @@
+{% extends "portal/base.html" %} 
+{% block addstyles %} 
+<script src= "/static/js/chosen.jquery.js"></script>
+<link rel="stylesheet" href="/static/css/chosen.css">
+{% load wysiwyg %}
+{% wysiwyg_setup %}
+{% endblock %}
+{% block title %} Add/Edit Post {% endblock %} 
+{% block header %} Project Marketplace {% endblock %} 
+{% block content %}
+<div class="newform col-md-8 col-md-offset-2">
+	<div class="row">
+		<a style="margin: 10px;" href="/marketplace/"
+			class="btn pull-left btn-info btn-go-back">Cancel</a>
+		<h2>{{header}} Project</h2>
+	</div>
+	<p class="required">
+		<span class="required">* </span>Required Fields
+	</p>
+	<div class="new-project-form">
+		<form class="form-horizontal" autocomplete="off" id="project_form" method="post"
+			{% if update %}
+			action="{% url 'edit_post_project' post_id=post_id %}"
+			{% else %}
+			action="{% url 'create_post_project' %}"
+			{% endif %}
+			>
+			{% csrf_token %}
+			<div class="row">
+			<div class="top-form-left col-md-6">
+			<div class="form-group">
+				<label for="id_country" class="control-label col-md-12"><span
+					class="required">* </span>Country: </label>
+				{{location_form.country.errors}}
+				<div class="col-md-12">{{location_form.country}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_state" class="control-label col-md-12"><span
+					class="required">* </span>State: </label> {{location_form.state.errors}}
+				<div class="col-md-12">{{location_form.state}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_city" class="control-label col-md-12"><span
+					class="required">* </span>City: </label> {{location_form.city.errors}}
+				<div class="col-md-12">{{location_form.city}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_start_date" class="control-label col-md-12"><span
+					class=></span>Start Date: </label> {{form.start_date.errors}}
+				<div class="date col-md-12">{{form.start_date}}</div>
+			</div>
+			</div>
+			<div class="top-form-right col-md-6">
+			<div class="form-group">
+				<label for="id_client" class="control-label col-md-12"><span
+					class="required">* </span>Name of Client: </label> {{form.client.errors}}
+				<div class="col-md-12">{{form.client}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_email" class="control-label col-md-12"><span
+					class="required">* </span>Email: </label> {{form.email.errors}}
+				<div class="col-md-12">{{form.email}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_technologies" class="control-label col-md-12"><span
+					class="required">* </span>Technologies: </label> {{form.technologies.errors}}
+				<div class="col-md-12">{{form.technologies}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_end_date" class="control-label col-md-12">
+				End Date: </label> 
+					{{form.end_date.errors}}
+				<div class="date col-md-12">{{form.end_date}}</div>
+			</div>
+			</div>
+
+
+			<div>
+				<label for="id_title" class="control-label col-md-12"><span
+					class="required">* </span>Project Title: </label> {{form.title.errors}}
+				<div class="col-md-12">{{form.title}}</div>
+			</div>
+			<div class="form-group">
+				<label for="id_description" class="control-label col-md-12" style="text-align: center;"><span
+					class="required">* </span>Description: </label>					
+				<div class="col-md-12">{{form.description.errors}}{{form.description}}</div>
+			</div>
+			{% if not user.is_authenticated  %}
+			<br>
+			<div class="top-form-left col-md-12">	
+				<div class="form-group">
+					<label for="password" class="control-label col-md-7 col-md-offset-2"><span
+						class="required">* </span>Password(Enables you to come back and edit the post): </label> 
+					<div class="col-md-7 col-md-offset-2">{{form.password.errors}}{{form.password}}</div>
+				</div>
+
+				<div class="form-group">
+					<label for="confirm_password" class="control-label col-md-7 col-md-offset-2"><span
+						class="required">* </span> Confirm Password: </label> 
+					<div class="col-md-7 col-md-offset-2"><ul class='errorlist' id='password_error'></ul><input type="password" id="confirm_password"></div>
+				</div>
+			</div>
+			{% else %}
+			<div class="form-group" style="display: none;">
+				<label for="id_password" class="control-label col-md-12"><span
+					class="required">* </span>Password(Enables you to come back and edit the post): </label> 
+				<div class="col-md-12">{{form.password.errors}}{{form.password}}</div>
+			</div>
+			<script>
+			$(document).ready(function(){
+				//this is just a random password for authenticated users
+				$('input#id_password').val("user_is_authenticated_no_need_for_password");
+			});
+			</script>
+			{% endif %}
+			<!--messes up new project posts{% wysiwyg_editor "id_description" %}-->
+			<div class="form-group col-md-12" style="text-align: center;">
+				<button type="submit" class="btn btn-default form_with_password">Submit</button>
+				<a style="margin: 10px;" href="/marketplace/" class="btn btn-default">Cancel</a>
+			</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- End new form Div -->
+{% endblock %}
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

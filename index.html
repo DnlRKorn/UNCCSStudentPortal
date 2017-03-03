@@ -1,0 +1,134 @@
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<style>
+div.index-row{
+background-color: #f4f4f4;
+}
+div.main-sidebar{
+margin: 10px 0px;
+padding: 10px;
+}
+
+h4.sidebar-header{
+background-color:#56A0D3;
+color: white;
+font-weight: 700;
+display: block;
+margin: 10px 5px;
+padding: 5px;
+text-align:center;
+border-radius: 3px;
+
+}
+
+ul.useful-links{
+list-style-type: circle;
+color: #848484;
+}
+
+#welcome-msg {
+    font-weight: bold;
+}
+#center-logo img {
+    margin-left: auto;
+    margin-right: auto;
+}
+.header {
+	width:100%;
+	top:0px;
+	padding:10px 30px;
+	background:#cee1ff;
+	color:#202c3f;
+	font-family: verdana;
+}
+
+.header a:visited {
+	color:#202c3f;
+}
+.header a:hover {
+	color:666b75;
+}
+.navbar {
+	list-style-type:none;
+	margin: 0;
+	padding: 0px;
+	width:100%;
+	overflow: hidden;
+	background-color:#5a6475;
+}
+.navbar ul {
+	
+}	
+.navbar li {
+	float: left;
+}
+.navbar a {
+	display: block;
+	padding: 15px 30px;
+	color:#ffffff;
+	background-color:#5a6475;
+	text-decoration: none;
+}	
+.navbar a:hover {
+	background-color:#3f444c;
+}
+
+</style>
+
+<div class="row index-row">
+	<div class="header"> 
+		<h1><a href="http://sportal.cs.unc.edu" style="text-decoration: none" >Welcome to the Student Portal</a> </h1>
+	</div>
+	
+	<div>
+		<ul class="navbar">
+			<li><a href ="masterGetHired.php">Get Hired</a></li>
+			<li><a href ="contact_project.html" target="_blank">Contact about a Project</a></li>
+			<li><a href ="projectmanager.php" target="_blank">Project Manager</a></li	
+		</ul>
+	</div>
+	
+	<div class="col-md-3">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="panel panel-default main-sidebar">
+					<div class="container-fluid">
+						<div class="row"><h4 class="sidebar-header">Upcoming Events</h4></div>
+				
+						<div class="row">
+							<!-- start feedwind code --><script type="text/javascript">document.write('<script type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js"><\/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "https://www.google.com/calendar/feeds/cs.unc.edu_d58v7pr1keka8slvhu6r4hm044%40group.calendar.google.com/public/basic",rssmikle_frame_width: "250",rssmikle_frame_height: "300",rssmikle_target: "_blank",rssmikle_font: "Geneva, Arial, sans-serif",rssmikle_font_size: "10",rssmikle_border: "on",responsive: "on",rssmikle_css_url: "",text_align: "left",corner: "on",autoscroll: "off",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "off",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#9ACD32",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#666666",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",rssmikle_item_description_length: "15",rssmikle_item_description_color: "#666666",rssmikle_item_date: "off",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M:%S %p",rssmikle_item_description_tag: "on_flexcroll",rssmikle_item_description_image_scaling: "off",rssmikle_item_podcast: "off"};feedwind_show_widget_iframe(params);})();</script>
+							<div style="font-size:10px; text-align:center; "><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a><!--Please display the above link in your web page according to Terms of Service.-->
+							</div><!-- end feedwind code -->					
+						</div>
+					</div>
+				
+			
+					<div class="container-fluid">
+						<div class="row"><h4 class="sidebar-header">Useful Links</h4></div>
+						<div class="row">
+							<ul class="useful-links">
+								<li><a href ="{% url 'faq_view' %}">Student Portal FAQ</a></li>
+								<li><a href ="http://www.unc.edu/ugradbulletin/depts/compsci.html" target="_blank">Undergraduate Course Descriptions</a></li>
+								<li><a href ="https://www.cs.unc.edu/Admin/Schedules/index.html" target="_blank">Teaching Schedules</a></li>
+								<li><a href ="https://www.cs.unc.edu/cms/academics/graduate-programs/student-progress-forms" target="_blank">Academic Worksheets</a></li>			
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-9"> <!-- Message and pics-->
+	
+		<div class="row text-center">
+    		<h4 id="welcome-msg">Welcome to the UNC Chapel Hill Computer Science Student Portal</h4>
+    		<p>The Student Portal was created by students for students as a tool to secure and evaluate work opportunities, gain experience and skills through projects, and browse available jobs.</p>
+		</div>
+	
+    	<div class="row" id="center-logo">
+        	<img class="img-responsive" alt="Photos of UNC Campus" src="http://i.imgur.com/KkGq3rp.jpg?1">
+    	</div>
+	</div>
+</div>
+
+{% endblock %}
